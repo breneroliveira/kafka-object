@@ -3,6 +3,7 @@ version: '3'
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
     networks:
       - broker-kafka
     environment:
@@ -11,6 +12,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:latest
+    container_name: kafka
     networks:
       - broker-kafka
     depends_on:
@@ -27,6 +29,7 @@ services:
 
   kafdrop:
     image: obsidiandynamics/kafdrop:latest
+    container_name: kafdrop
     networks:
       - broker-kafka
     depends_on:
@@ -38,6 +41,7 @@ services:
 
   payment:
     image: breneroliveira/payment-service:1.0.1
+    container_name: payment-service
     networks:
       - broker-kafka
     depends_on:
@@ -49,6 +53,7 @@ services:
 
   consumer:
     image: breneroliveira/json-consumer:1.0.1
+    container_name: json-consumer
     networks:
       - broker-kafka
     depends_on:
